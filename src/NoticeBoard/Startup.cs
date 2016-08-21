@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using NoticeBoard.Data;
 using NoticeBoard.Models;
 using NoticeBoard.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
+using GuardRex.MinifyingMvcRazorHost;
 
 namespace NoticeBoard
 {
@@ -46,6 +48,8 @@ namespace NoticeBoard
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddSingleton<IMvcRazorHost, ChunkVisitorMinifyingMvcRazorHost>();
 
             services.AddMvc();
 

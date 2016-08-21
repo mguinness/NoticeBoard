@@ -1,0 +1,37 @@
+{
+  "name": "min",
+  "authors": [
+    "Owen Versteeg <me@owenversteeg.com>",
+    "Scott O'Hara"
+  ],
+  "description": "The world's smallest CSS framework - only 995 bytes.",
+  "main": "entireframework.min.css",
+  "ignore": [
+    ".gitignore",
+    "CNAME",
+    "**/*.md",
+    "**/*.html",
+    "**/*.sh",
+    "**/*.js",
+    "**/*.ico",
+    "**/*.php",
+    "download.less"
+  ],
+  "keywords": [
+    "min",
+    "mincss",
+    "minimal"
+  ],
+  "license": "MIT",
+  "homepage": "http://mincss.com",
+  "_release": "544e101414",
+  "_resolution": {
+    "type": "branch",
+    "branch": "gh-pages",
+    "commit": "544e101414733dfb946c6ab13980493e6071cacf"
+  },
+  "_source": "https://github.com/owenversteeg/min.git",
+  "_target": "gh-pages",
+  "_originalSource": "https://github.com/owenversteeg/min.git",
+  "_direct": true
+}

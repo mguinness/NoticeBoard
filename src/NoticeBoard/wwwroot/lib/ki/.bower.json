@@ -1,0 +1,34 @@
+{
+  "name": "ki",
+  "main": "ki.js",
+  "authors": [
+    "Denis Ciccale (@tdecs)"
+  ],
+  "description": "ki.js is a super-tiny jQuery-like API JavaScript library",
+  "keywords": [
+    "ki",
+    "jquery",
+    "javascript",
+    "library"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dciccale/ki.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "Gruntfile.coffee",
+    "package.json",
+    "README.md"
+  ],
+  "_release": "b7b4fac45e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b7b4fac45ea2016a34c4c75940732767fadef6b2"
+  },
+  "_source": "https://github.com/dciccale/ki.js.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/dciccale/ki.js.git",
+  "_direct": true
+}

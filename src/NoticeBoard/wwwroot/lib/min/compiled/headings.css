@@ -1,0 +1,4 @@
+/* Make the default heading style larger */
+h1 {
+  font-size: 3em;
+}

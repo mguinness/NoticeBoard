@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-NoticeBoard-4b3a9f7c-285d-4ae5-9cfe-4b8ae65b5d4a",
 
   "dependencies": {
@@ -42,7 +42,9 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "GuardRex.MinifyingMvcRazorHost": "1.0.0",
+    "BundlerMinifier.Core": "2.2.281"
   },
 
   "tools": {
