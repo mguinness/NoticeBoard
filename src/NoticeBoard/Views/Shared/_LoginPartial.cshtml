@@ -6,10 +6,8 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <a asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
-        <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-    </form>
+    <a asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+    <a asp-controller="Account" asp-action="LogOut">Log off</a>
 }
 else
 {
