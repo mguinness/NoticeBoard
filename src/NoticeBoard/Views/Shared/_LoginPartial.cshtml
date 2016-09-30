@@ -7,6 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <a asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+    <a asp-controller="Pages" asp-action="Index">Page List</a>
     <a asp-controller="Account" asp-action="LogOut">Log off</a>
 }
 else

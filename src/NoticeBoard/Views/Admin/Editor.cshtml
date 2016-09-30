@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Editor";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<style>
+    input[name="tabs"] {
+        display: none;
+    }
+
+    label {
+        display: inline-block;
+        padding: 15px 25px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: -1px;
+    }
+
+    input:checked + label {
+        border: 1px solid grey;
+        border-bottom-color: white;
+    }
+
+    #tab1:checked ~ .content #content1,
+    #tab2:checked ~ .content #content2 {
+        display: block;
+    }
+
+    .content {
+        border: 1px solid grey;
+    }
+
+    .content > div {
+        display: none;
+        padding: 20px 25px;
+    }
+
+    textarea {
+        min-width: 100%;
+        max-width: initial;
+        resize: vertical;
+        box-sizing: border-box;
+        font-family: monospace;
+    }
+</style>
+
+<p>
+    To get started with Markdown, see <a href="http://commonmark.org/help" target="_blank">help</a> for standard markdown.
+    The <a href="http://pandoc.org/MANUAL.html#extension-pipe_tables" target="_blank">pipe tables</a> markdown extension is also supported. 
+</p>
+
+<form asp-controller="Admin" asp-action="SaveContent" method="post">
+    <input id="tab1" type="radio" name="tabs" checked>
+    <label for="tab1">Write</label>
+
+    <input id="tab2" type="radio" name="tabs">
+    <label for="tab2" style="display:none">Preview</label>
+
+    <div class="content">
+        <div id="content1">
+            <textarea id="markdownText" name="content" rows="10" placeholder="Enter markdown text here">@Model</textarea>
+        </div>
+        <div id="content2">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-sm btn-a">Submit</button>
+    <input name="path" type="hidden" value="@Context.Request.Query["path"]" />
+</form>
+
+@section Scripts {
+    <script>
+    $(function () {
+        $('label[for="tab2"]')[0].style.display = 'inline-block';
+    });
+
+    $('#tab2').on('click', function () {
+        var text = $('#markdownText')[0].value;
+
+        $.ajax('@Url.Action("GetPreview", "Admin")', { markdown: text }, function (res, err) {
+            if (err) {
+                console.log('Status: ' + res.statusText);
+            } else {
+                $('#content2')[0].innerHTML = res;
+            }
+        });
+    });
+    </script>
+}

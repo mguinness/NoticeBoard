@@ -18,8 +18,8 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Sqlite.Design": {
       "version": "1.0.0",
       "type": "build"
     },
@@ -44,7 +44,7 @@
       "type": "build"
     },
     "GuardRex.MinifyingMvcRazorHost": "1.0.0",
-    "BundlerMinifier.Core": "2.2.281"
+    "Markdig": "0.7.4"
   },
 
   "tools": {

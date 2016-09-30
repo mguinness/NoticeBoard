@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Caching.Memory
+@inject IMemoryCache memoryCache;
+@inject ContentContext contentContext;
+@{
+    var pages = memoryCache.Get<IEnumerable<Page>>("PageList");
+    if (pages == null)
+    {
+        pages = memoryCache.Set<IEnumerable<Page>>("PageList", contentContext.Pages.ToList(),
+            new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(15)));
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,10 +29,13 @@
 <body>
     <nav class="nav" tabindex="-1" onclick="this.focus()">
         <div class="container">
-            <a asp-controller="Home" asp-action="Index" class="pagename current">NoticeBoard</a>
-            <a asp-controller="Home" asp-action="Index">Home</a>
-            <a asp-controller="Home" asp-action="About">About</a>
-            <a asp-controller="Home" asp-action="Contact">Contact</a>
+            <a href="~/" class="pagename current">
+                <img src="~/images/info_icon.png" style="height:17px" />&nbsp;NoticeBoard
+            </a>
+            @foreach (var page in pages)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-name="@page.Pagename">@page.Pagename</a>
+            }
             <span class="nav-right">
                 @await Html.PartialAsync("_LoginPartial")
             </span>
@@ -29,11 +44,21 @@
     <button class="btn-close btn btn-sm">×</button>
     <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <small>&copy; @DateTime.Today.Year - NoticeBoard</small>
-        </footer>
     </div>
+    <footer>
+        <div class="container">
+            <hr />
+            <div style="float:left; font-size:small">
+                &copy; @DateTime.Today.Year - NoticeBoard
+            </div>
+            <div style="float:right; font-size:small">
+                @if (User.Identity.IsAuthenticated && ViewContext.RouteData.Values["controller"].Equals("Home"))
+                {
+                    <a asp-controller="Admin" asp-action="Editor" asp-route-path="@Url.Action()">Edit Page</a>
+                }
+            </div>
+        </div>
+    </footer>
 
     <environment names="Development">
         <script src="~/lib/ki/ki.js"></script>

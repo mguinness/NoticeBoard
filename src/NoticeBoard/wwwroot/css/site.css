@@ -36,3 +36,47 @@ textarea {
     padding-top: 7px;
   }
 }
+
+/* Sticky footer styles */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 50px;
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    width: 100%;
+}
+
+/* Change nav background color */
+.nav,
+.nav .current,
+.nav a:hover {
+    background-color: midnightblue;
+}
+
+/* Validation summary errors */
+.validation-summary-errors {
+    color: red;
+}
+
+/* Definition list formatting */
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+dt, dd {
+    line-height: 1.428571429;
+}
+dt {
+    font-weight: 700;
+}
+dd {
+    margin-left: 0;
+}

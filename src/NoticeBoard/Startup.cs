@@ -14,6 +14,10 @@ using NoticeBoard.Models;
 using NoticeBoard.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using GuardRex.MinifyingMvcRazorHost;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace NoticeBoard
 {
@@ -43,13 +47,19 @@ namespace NoticeBoard
         {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ContentContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddSingleton<IMvcRazorHost, ChunkVisitorMinifyingMvcRazorHost>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddSingleton<IUrlHelperFactory, UrlHelperFactory>();
 
             services.AddMvc();
 
@@ -84,8 +94,11 @@ namespace NoticeBoard
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "home",
+                    template: "{controller=Home}/{action=Index}/{name?}");
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action=Index}/{id?}");
             });
         }
     }
