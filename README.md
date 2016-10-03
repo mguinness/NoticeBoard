@@ -10,7 +10,7 @@ Using either [Bootstrap](http://getbootstrap.com/) or [jQuery](http://jquery.com
 
 ## Installation
 
-`dotnet ef database update --context IdentityContext`
+`dotnet ef database update --context ApplicationDbContext`
 
 `dotnet ef database update --context ContentContext`
 
