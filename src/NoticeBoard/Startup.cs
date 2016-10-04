@@ -69,7 +69,7 @@ namespace NoticeBoard
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appCtx, ContentContext conCtx)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -100,6 +100,10 @@ namespace NoticeBoard
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
+            //Apply migrations automatically
+            appCtx.Database.Migrate();
+            conCtx.Database.Migrate();
         }
     }
 }
